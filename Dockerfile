@@ -1,6 +1,6 @@
 FROM ubuntu:14.04.3
 
-Maintainer test@test
+Maintainer ergo@ergoproxy.eu 
 
 ENV uid 1000
 ENV gid 1000

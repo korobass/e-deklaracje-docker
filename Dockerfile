@@ -1,15 +1,15 @@
-FROM ubuntu:14.04.3
-
-Maintainer ergo@ergoproxy.eu 
+FROM ubuntu:14.04.5
 
 ENV uid 1000
 ENV gid 1000
-ENV HOME=/home/uzytkownik
+ENV HOME=/home/edeklaracje
 
-RUN useradd -m uzytkownik; \
+RUN useradd -m edeklaracje; \
+    set -e -x ; \
     dpkg --add-architecture i386; \
-    apt-get update; \
-    apt-get install -y wget \
+    DEBIAN_FRONTEND=noninteractive apt-get update ; \
+    DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade ; \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y wget \
 		       libgtk2.0-0:i386 \
 		       libstdc++6:i386 \
 		       libnss3-1d:i386 \
@@ -47,4 +47,4 @@ RUN mkdir -p $HOME/adobe-air-sdk/e-deklaracje; \
     cp /tmp/e-DeklaracjeDesktop.air $HOME/adobe-air-sdk/e-deklaracje/
          	
 
-ENTRYPOINT su - uzytkownik -c '$HOME/adobe-air-sdk/adobe-air/adobe-air $HOME/adobe-air-sdk/e-deklaracje/e-DeklaracjeDesktop.air'
+ENTRYPOINT su - edeklaracje -c '$HOME/adobe-air-sdk/adobe-air/adobe-air $HOME/adobe-air-sdk/e-deklaracje/e-DeklaracjeDesktop.air'

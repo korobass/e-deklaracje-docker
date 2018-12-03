@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.5
+FROM ubuntu:14.04
 
 ENV uid 1000
 ENV gid 1000
@@ -7,8 +7,8 @@ ENV HOME=/home/edeklaracje
 RUN useradd -m edeklaracje; \
     set -e -x ; \
     dpkg --add-architecture i386; \
-    DEBIAN_FRONTEND=noninteractive apt-get update ; \
-    DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade ; \
+    DEBIAN_FRONTEND=noninteractive apt-get update -y ; \
+    DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y wget \
 		       libgtk2.0-0:i386 \
 		       libstdc++6:i386 \
